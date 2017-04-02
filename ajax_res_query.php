@@ -1,0 +1,19 @@
+<?php
+	include 'Core/init.php';
+	$query = $_GET['query'];
+	$result = mysql_query($query);
+	$returnText = "<table style='margin:auto;' cellspacing='10'><tr>";
+	for($i = 0; $i < mysql_num_fields($result);$i++){
+		$meta = mysql_fetch_field($result,$i);
+		$returnText.="<th>".($meta->name)."</th>";
+	}
+	$returnText .="</tr>";
+	echo mysql_error();
+	for($i = 0; $i < mysql_num_rows($result);$i++){
+		$data = mysql_fetch_assoc($result);
+		$content = implode("</td><td>",$data);
+		$returnText.="<tr><td>".$content."</td></tr>";
+	}
+	$returnText.="</table>";	
+	echo mysql_num_rows($result) === 0 ? "<p>no reservations found</p>" : $returnText;
+?>

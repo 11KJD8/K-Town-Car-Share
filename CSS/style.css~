@@ -1,0 +1,297 @@
+/* Main */
+*{
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+		
+html, body{
+	background: #ffffff;
+	height: 100%;
+}
+
+.clear {
+	clear:both;
+}
+
+#container {
+	min-height:100%;
+	position:relative;
+}
+
+/* General */
+input[type=text],input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit]:hover {
+    background-color: #db4437;
+}
+
+/* Header UI */
+header{
+	background: #4285F4;
+	width: 100%;
+	height: 80px;
+	position: static;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	opacity: 0.90;
+}
+
+#logo {
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 15px
+}
+
+nav {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#nav1{
+	float: left;
+}
+
+#nav2 {
+	float: right;
+}
+
+#navicon {
+	display: none;
+	float: right;
+	width: 40px;
+	height: 40px;
+}
+
+a:hover#navicon {
+	border-radius: 4px 4px 0 0;
+}
+
+#join {
+	display: block;
+    background: #ffffff;
+    text-align: center;
+    border-radius: 5px;
+	border: 2px solid #555555;
+    color: #555555;
+	padding: 1px;
+}
+
+header a{
+	color: white;
+	text-decoration: none;
+}
+
+header a:hover{
+	color: #000000;
+}
+
+header nav ul li {
+	padding: 10px;
+	display: block;
+	float: left;
+	text-align: center;
+}
+
+/*Content container*/
+#content {
+	padding-bottom: 180px;   /* Height of the footer */
+}
+
+/* Footer UI */
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/*background: #0f9d58;*/
+	background: #db4437;
+	height: 180px;
+	text-align: center;
+	color: white;
+}
+
+#socialmedia{
+	width: 100%;
+}
+
+#socialmedia img {
+	width: 40px;
+	height: auto;
+}
+
+/*Index Page index1*/
+#index1 {
+	width: 100%;
+	position: relative;
+}
+
+#index1 img {
+	width: 100%;
+    height: auto;
+	box-shadow: 0 5px 5px -5px #333;
+}
+
+#join_now {
+	left: 50%;
+	right: 50%;
+	top: 10%;
+	position: absolute;
+	display: block;
+    width: 150px;
+    height: 35px;
+    background: #f4b400;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+	font-size: 20px;
+	text-decoration: none;
+	
+}
+
+/*index2*/
+.index2 {
+	width: 60em;
+	margin:auto;
+}
+#car {
+	width: 200px;
+}
+
+.left-pic{
+	float:left;
+	height:15em;
+}
+
+.right-text{
+	padding-top:5em;
+	margin-left:5em;
+	float:left;
+	height:15em;
+}
+
+/*index3*/
+#index3 {
+	width: 100%;
+	height:400px;
+}
+
+/*Login page*/
+#login {
+	margin: 10%;
+	width: 50%;
+	min-width: 200px;
+	max-width: 500px;
+}
+
+#login ul{
+	list-style: none;
+}
+
+/*View cars*/
+#carlist {
+	margin-left: 5%;
+	float:left;
+}
+
+#filter-options {
+	margin-top: 5%;
+	float:left;
+}
+
+/*Registration page*/
+#register {
+	margin: 10%;
+	width: 50%;
+	min-width: 200px;
+	max-width: 500px;
+}
+
+#register ul{
+	list-style: none;
+}
+
+/*Reply page*/
+#replyComment {
+	margin: 10%;
+	width: 50%;
+	min-width: 200px;
+	max-width: 500px;
+}
+
+#textArea {
+	width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/*User page*/
+#userContent {
+	height: 100%;
+	width: 80%;
+	float: left;
+}
+
+#userWidget {
+	height: 100%;
+	width: 20%;
+	float: right;
+}
+
+/*Change password page*/
+#changePass {
+	margin: 10%;
+	width: 50%;
+	min-width: 200px;
+	max-width: 500px;
+}
+
+#changePass ul{
+	list-style: none;
+}
+
+/*Settings page*/
+#settings {
+	margin: 10%;
+	width: 50%;
+	min-width: 200px;
+	max-width: 500px;
+}
+
+#settings ul{
+	list-style: none;
+}
+
+/*Invoice page*/
+#invoice {
+	width:25%;
+	margin: auto;
+}
+th{
+	border-bottom: 1px solid black;
+}
+
+td{
+	text-align:center;
+}
+
+@media screen and (max-width: 478px) {
+
+}
+
+@media screen and (max-width: 740px) {
+}
