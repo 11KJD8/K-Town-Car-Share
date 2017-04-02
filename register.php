@@ -66,7 +66,7 @@ if(empty($_POST) === false){
 					<input type="password" placeholder="Password*" name="Password">
 				</li>
 				<li>
-					<input type="password" placeholder="Retype Password*" ="retype_password">
+					<input type="password" placeholder="Retype Password*" name="retype_password">
 				</li>
 				<li>
 					<input type="text" placeholder="First Name*" name="FName">

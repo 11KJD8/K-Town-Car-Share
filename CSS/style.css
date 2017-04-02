@@ -34,6 +34,11 @@ input[type=submit]:hover {
     background-color: #db4437;
 }
 
+#table {
+	width:100%;
+	clear:both;
+}
+
 /* Header UI */
 header{
 	background: #4285F4;

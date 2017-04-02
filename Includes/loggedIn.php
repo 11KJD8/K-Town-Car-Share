@@ -10,12 +10,6 @@
 	<div>
 		<ul>
 			<li>
-				<a href="logout.php">Logout</a>
-			</li>
-			<li>
-				<a href="userProfile.php?Username=<?php echo $user_data['Username'];?>">Profile</a>
-			</li>
-			<li>
 				<a href="changepassword.php">Change password</a>
 			</li>
 			<li>

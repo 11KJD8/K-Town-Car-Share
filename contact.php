@@ -1,4 +1,5 @@
 <?php
+include 'Core/init.php';
 include 'Includes/Overall/header.php';
 ?>
 

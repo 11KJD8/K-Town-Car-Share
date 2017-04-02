@@ -117,4 +117,9 @@ function add_car($car_data){
 		#echo mysql_error();
 	#}
 }
+
+function getUserReservationHistory($MemberID,$date){
+	$data = mysql_query("SELECT `VIN`,`ReservationDate`, `ReturnStatus`, `OdometerBefore`, `OdometerAfter`, `AdminComment` FROM `reservation` WHERE `MemberID` = $MemberID AND ReservationDate < '".$date['year']."-".$date['mon']."-".$date['mday']."'");
+	return $data;
+}
 ?>
