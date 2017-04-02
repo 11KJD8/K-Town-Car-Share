@@ -12,53 +12,31 @@ include 'Includes/Overall/header.php';
 	});
 
 	function query() {
-		var str = "SELECT cars.* FROM (cars JOIN reservation ON cars.VIN = reservation.VIN) WHERE 1";
+		var str = "SELECT cars.*,location_address.CivicAddress FROM ((cars LEFT JOIN reservation ON cars.VIN = reservation.VIN) JOIN location_address ON cars.LocationID = location_address.LocationID) WHERE 1";
 		var type = document.getElementById('type-filter').value;
 		var location = document.getElementById('location-filter').value;
 		var date = document.getElementById('datepicker').value;
 		if (type !== ''){
-			str += " AND CarType = " + type;
+			str += " AND cars.CarType = '" + type +"'";
 		}
 		if (location !== ''){
-			str += " AND LocationID = " + location;
+			str += " AND cars.LocationID = " + location;
 		}
-		if (date !== ''){
-			var components = date.split("/");
-			str += " AND ReservationDate  '"+components[2]+"-"+components[0]+"-"+components[1]+"'";
-		}
+		var components = date.split("/");
+		str += " AND cars.VIN NOT IN (SELECT VIN FROM reservation WHERE ReservationDate = '"+components[2]+"-"+components[0]+"-"+components[1]+"') GROUP BY cars.VIN";
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				document.getElementById("carlist").innerHTML = this.responseText;
+				var links = document.getElementsByClassName("res-link")
+				for (i = 0; i< links.length;i++){
+					links[i].href += "&date="+components[2]+"-"+components[0]+"-"+components[1];
+				}
 			}
 		};
 		xmlhttp.open("GET", "ajax_query.php?admin=False&query=" + str, true);
 		xmlhttp.send();
-	}
-	function view_reservations(vin){
-		var d = new Date();
-		var str = "SELECT members.MemberID, FName as `First Name`, LName as `Last Name`, ReservationDate FROM (reservation JOIN members ON reservation.MemberID = members.MemberID) WHERE VIN = "+vin+" AND ReservationDate > '"+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()+"'";
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var id = vin+"-reservations";
-				console.log(id);
-				document.getElementById(id).innerHTML = this.responseText;
-				console.log(document.getElementById(id).children[0]);
-				var li = document.createElement("li");
-				li.innerHTML = "<a href='' onclick='hide_reservations(\""+vin+"\");return false'>hide reservations</a>";
-				document.getElementById(id).children[0].appendChild(li);
-				document.getElementById(id).style = "list-style-type:none;";
-				document.getElementById(id).children[0].style = "margin-left:2em;";
-			}
-		};
-		xmlhttp.open("GET", "ajax_res_query.php?query=" + str, true);
-		xmlhttp.send();
-	}
-	function hide_reservations(vin){
-		var id = vin+"-reservations";
-		document.getElementById(id).innerHTML = "<a href='' onclick='view_reservations(\""+vin+"\");return false;'>view reservations</a>";
-		document.getElementById(id).style = "list-style-type:block;";
+		document.getElementById('errmessage').style.display='none';
 	}
 </script>
 
@@ -97,10 +75,11 @@ include 'Includes/Overall/header.php';
 			</select>
 		</li>
 		<li>
+			<p id='errmessage' style="color:red;display:none;">Please select a date</p>
 			Date: <input type="text" id="datepicker" onchange = "console.log(this.value)" placeholder="select date" value = ''>
 		</li>
 		<li>
-			<button onclick="query()">Search</button>
+			<button onclick="if(document.getElementById('datepicker').value!==''){query();}else{document.getElementById('errmessage').style.display='block';};">Search</button>
 		</li>
 	</ul>
 

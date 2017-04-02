@@ -4,7 +4,7 @@
 	border: 0;
 	padding: 0;
 }
-		
+
 html, body{
 	background: #ffffff;
 	height: 100%;
@@ -157,7 +157,7 @@ footer {
     font-weight: bold;
 	font-size: 20px;
 	text-decoration: none;
-	
+
 }
 
 /*index2*/
@@ -172,6 +172,7 @@ footer {
 .left-pic{
 	float:left;
 	height:15em;
+	padding-top:3em;
 }
 
 .right-text{
@@ -203,6 +204,10 @@ footer {
 #carlist {
 	margin-left: 5%;
 	float:left;
+}
+
+#carlist img{
+	width: 20em;
 }
 
 #filter-options {

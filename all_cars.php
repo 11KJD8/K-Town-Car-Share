@@ -16,7 +16,7 @@ include 'Includes/Overall/header.php';
 	}
 	function view_reservations(vin){
 		var d = new Date();
-		var str = "SELECT members.MemberID, FName as `First Name`, LName as `Last Name`, ReservationDate FROM (reservation JOIN members ON reservation.MemberID = members.MemberID) WHERE VIN = "+vin+" AND ReservationDate > '"+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()+"'"; 
+		var str = "SELECT members.MemberID, FName as `First Name`, LName as `Last Name`, ReservationDate FROM (reservation JOIN members ON reservation.MemberID = members.MemberID) WHERE VIN = "+vin+" AND ReservationDate > '"+d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()+"'";
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
@@ -47,7 +47,7 @@ include 'Includes/Overall/header.php';
 		$results = mysql_query($query);
 		for($i = 0; $i < mysql_num_rows($results);$i++){
 			$data = mysql_fetch_assoc($results);
-			echo "<div class='index2'><div class='left-pic'><img src='https://img.1milioncars.com/e1ab7ee00f023b17faa045ce3e2d8744_download-3d-car-bentley-car-images-free-download_256-256.jpeg'></img></div><div class='right-text'><ul><li>vin: ".$data['VIN']."</li><li>make: ".$data['Make']."</li><li>model: ".$data['Model']."</li><li>model year: ".$data['ModelYear']."</li><li><a href='view_history.php?vin=".$data['VIN']."'>view history</a></li><li id='".$data['VIN']."-reservations'><a href='' onclick='view_reservations(\"".$data['VIN']."\");return false;'>view reservations</a></li></ul></div><div style='clear:both;'></div></div>";
+			echo "<div class='index2'><div class='left-pic'><img src='".$data['PictureAddress']."'></img></div><div class='right-text'><ul><li>vin: ".$data['VIN']."</li><li>make: ".$data['Make']."</li><li>model: ".$data['Model']."</li><li>model year: ".$data['ModelYear']."</li><li><a href='view_history.php?vin=".$data['VIN']."'>view history</a></li><li id='".$data['VIN']."-reservations'><a href='' onclick='view_reservations(\"".$data['VIN']."\");return false;'>view reservations</a></li></ul></div><div style='clear:both;'></div></div>";
 		}
 	?>
 </div>
@@ -64,7 +64,7 @@ include 'Includes/Overall/header.php';
 		<li><input type='radio' onclick="query('SELECT * FROM cars WHERE LocationID = 2')" name='filter-option'> 19 Brock St, Kingston </li>
 		<li><input type='radio' onclick="query('SELECT * FROM cars WHERE LocationID = 3')" name='filter-option'> 100 Wright Crescent, Kingston </li>
 	</ul>
-	
+
 </div>
 <div style='clear:both'></div>
 
