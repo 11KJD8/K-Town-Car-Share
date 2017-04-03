@@ -18,7 +18,7 @@ include 'Includes/Overall/header.php';
       $month = $date['mon'];
       $day = $date['mday'];
       $year = $date['year'];
-      $query = "SELECT cars.VIN, cars.Make, cars.Model, cars.ModelYear FROM (cars JOIN reservation ON cars.VIN = reservation.VIN) WHERE ReservationDate = '".$year."-".$month."-".$day."' AND reservation.OdometerBefore IS NULL";
+      $query = "SELECT cars.VIN, cars.Make, cars.Model, cars.ModelYear FROM (cars JOIN reservation ON cars.VIN = reservation.VIN) WHERE ReservationDate = CURDATE() AND reservation.OdometerBefore IS NULL";
       $results = mysql_query($query);
       echo mysql_num_rows($results);
       for ($i=0;$i<mysql_num_rows($results);$i++){

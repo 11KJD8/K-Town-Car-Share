@@ -31,12 +31,10 @@ include 'Includes/Overall/header.php';
   <h4>Please enter odometer reading:</h4> <input id='odm-input' type="text" name="OdometerAfter" value=""><br>
   <h4>Rating:</h4>
   <select id='rating-input'>
-    <option name='rating' value='0'>0</option>
     <option name='rating' value='1'>1</option>
     <option name='rating' value='2'>2</option>
     <option name='rating' value='3'>3</option>
     <option name='rating' value='4'>4</option>
-    <option name='rating' value='5'>5</option>
   </select><br>
   <h4>Comments:</h4>
   <textarea id='comment-input' rows='10' cols='80' style="border:1pt solid grey"></textarea><br>

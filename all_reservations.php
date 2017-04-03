@@ -13,7 +13,9 @@ include 'Includes/Overall/header.php';
 
 	function query() {
 		var date = document.getElementById("datepicker").value.split("/");
-		var str = "SELECT * FROM reservation WHERE DAY(ReservationDate)="+date[1]+" AND MONTH(ReservationDate)="+date[0]+" AND YEAR(ReservationDate)="+date[2];
+    var formated_date = date[2]+"-"+date[0]+"-"+date[1];
+		var str = "SELECT * FROM reservation WHERE ReservationDate <= '"+formated_date+"' AND DATE_ADD(ReservationDate,INTERVAL Length DAY) > '"+formated_date+"'";
+    console.log(str);
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {

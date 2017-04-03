@@ -62,7 +62,17 @@ if(isset($_GET['success']) === true && empty($_GET['success']) === false){
 				<input type="text" placeholder="Model Year" name="ModelYear">
 			</li>
 			<li>
-				<input type="text" placeholder="Car Type" name="CarType">
+				<select name="CarType">
+					<option  value=''> select cartype </option>
+					<?php
+						$query = "SELECT CarType FROM cartype";
+						$results = mysql_query($query);
+						for ($i = 0; $i < mysql_num_rows($results);$i++){
+							$data = mysql_fetch_assoc($results);
+							echo "<option value='".$data['CarType']."'>".$data['CarType']."</option>";
+						}
+					?>
+				</select>
 			</li>
 			<li>
 				<input type="text" placeholder="Picture Address" name="PictureAddress">
@@ -80,6 +90,6 @@ if(isset($_GET['success']) === true && empty($_GET['success']) === false){
 	</form>
 
 	<?php
-} 
+}
 include 'Includes/Overall/footer.php';
 ?>

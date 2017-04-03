@@ -16,6 +16,7 @@ include 'Includes/Overall/header.php';
 		var type = document.getElementById('type-filter').value;
 		var location = document.getElementById('location-filter').value;
 		var date = document.getElementById('datepicker').value;
+		var length = document.getElementById('length-input').value;
 		if (type !== ''){
 			str += " AND cars.CarType = '" + type +"'";
 		}
@@ -23,7 +24,8 @@ include 'Includes/Overall/header.php';
 			str += " AND cars.LocationID = " + location;
 		}
 		var components = date.split("/");
-		str += " AND cars.VIN NOT IN (SELECT VIN FROM reservation WHERE ReservationDate = '"+components[2]+"-"+components[0]+"-"+components[1]+"') GROUP BY cars.VIN";
+		var formated_date = components[2]+"-"+components[0]+"-"+components[1];
+		str += " AND cars.VIN NOT IN (SELECT VIN FROM reservation WHERE ReservationDate <= '"+formated_date+"' AND '"+formated_date+"' < (SELECT DATE_ADD(ReservationDate,INTERVAL Length DAY))) GROUP BY cars.VIN";
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
@@ -34,7 +36,7 @@ include 'Includes/Overall/header.php';
 				}
 			}
 		};
-		xmlhttp.open("GET", "ajax_query.php?admin=False&query=" + str, true);
+		xmlhttp.open("GET", "ajax_query.php?admin=False&query=" + str+"&length="+length, true);
 		xmlhttp.send();
 		document.getElementById('errmessage').style.display='none';
 	}
@@ -75,8 +77,11 @@ include 'Includes/Overall/header.php';
 			</select>
 		</li>
 		<li>
+			Length: <input id='length-input' type="number" min="1" value=1>
+		</li>
+		<li>
 			<p id='errmessage' style="color:red;display:none;">Please select a date</p>
-			Date: <input type="text" id="datepicker" onchange = "console.log(this.value)" placeholder="select date" value = ''>
+			Date: <input type="text" id="datepicker" placeholder="select date" value = ''>
 		</li>
 		<li>
 			<button onclick="if(document.getElementById('datepicker').value!==''){query();}else{document.getElementById('errmessage').style.display='block';};">Search</button>

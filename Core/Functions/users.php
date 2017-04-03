@@ -2,7 +2,7 @@
 function update_user($update_data){
 	$update = array();
 	array_walk($update_data, 'array_sanitize');
-	
+
 	foreach($update_data as $field=>$data){
 		$update[] = '`' . $field . '` = \'' . $data . '\'';
 	}
@@ -44,10 +44,10 @@ function user_data($MemberID){
 	//Use this to load in any user data from the members table
 	$data = array();
 	$MemberID = (int)$MemberID;
-	
+
 	$func_num_args = func_num_args();
 	$func_get_args = func_get_args();
-	
+
 	if($func_num_args > 1){
 		unset($func_get_args[0]);
 		$fields = '`' . implode('`, `', $func_get_args) . '`';
@@ -98,7 +98,7 @@ function login($Username,$Password){
 
 function allUsers(){
 	return mysql_query("SELECT * FROM `members` WHERE `MemberType` != 'Admin'");
-	
+
 }
 
 function vin_exists($VIN){
@@ -119,7 +119,7 @@ function add_car($car_data){
 }
 
 function getUserReservationHistory($MemberID,$date){
-	$data = mysql_query("SELECT `VIN`,`ReservationDate`, `ReturnStatus`, `OdometerBefore`, `OdometerAfter`, `AdminComment` FROM `reservation` WHERE `MemberID` = $MemberID AND ReservationDate < '".$date['year']."-".$date['mon']."-".$date['mday']."'");
+	$data = mysql_query("SELECT `VIN`,`ReservationDate`, `ReturnStatus`, `OdometerBefore`, `OdometerAfter`, `AdminComment` FROM `reservation` WHERE `MemberID` = $MemberID AND OdometerBefore IS NOT NULL AND OdometerAfter IS NOT NULL");
 	return $data;
 }
 ?>

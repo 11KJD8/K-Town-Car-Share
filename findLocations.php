@@ -2,7 +2,7 @@
 include 'Core/init.php';
 redirect_to_login();
 include 'Includes/Overall/header.php';
-$query = "SELECT location_address.CivicAddress,location_address.Municipality,location_address.Province,location_address.PostalCode,location_address.Country From location_address";
+$query = "SELECT location_address.CivicAddress,location_address.Municipality,location_address.Province,location_address.PostalCode,location_address.Country,location.`Parking Spaces` From (location_address JOIN location ON location.LocationID = location_address.LocationID)";
 $results = mysql_query($query);
 ?>
 <table style='margin:auto;' cellspacing='10'>
